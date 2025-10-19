@@ -16,14 +16,14 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ value, onChange }) => {
           Editor
         </h2>
       </div>
-      <div className="flex-1 p-6">
+      <div className="flex-1">
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className="w-full h-full resize-none border-none outline-none font-mono text-sm text-gray-800 leading-relaxed"
-          placeholder="在此输入 Markdown 内容..."
+          placeholder="Your Markdown Content..."
           spellCheck={false}
-          style={{ minHeight: '100%' }}
+          style={{ minHeight: '100%', padding: '1rem' }}
         />
       </div>
     </div>
