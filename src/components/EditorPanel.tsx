@@ -16,7 +16,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ value, onChange }) => {
           Markdown 编辑器
         </h2>
       </div>
-      <div className="flex-1 p-6 overflow-auto">
+      <div className="flex-1 p-6">
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
