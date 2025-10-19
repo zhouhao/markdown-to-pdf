@@ -19,16 +19,16 @@ const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, 
 
   return (
     <div className="fixed inset-0 bg-white z-50 overflow-auto">
-      {/* 退出按钮 - 打印时隐藏 */}
+      {/* Exit按钮 - 打印时隐藏 */}
       <button
         onClick={onExit}
         className="print:hidden fixed top-6 right-6 z-10 px-4 py-2 bg-gray-800 bg-opacity-80 hover:bg-opacity-100 text-white rounded-lg shadow-lg transition-all duration-200 flex items-center space-x-2"
-        title="退出全屏 (ESC)"
+        title="Exit Full Screen (ESC)"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
         </svg>
-        <span>退出</span>
+        <span>Exit</span>
       </button>
 
       {/* 预览内容 */}

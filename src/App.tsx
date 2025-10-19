@@ -40,7 +40,7 @@ function App() {
     setIsFullscreen(false);
   }, []);
 
-  // ESC 键退出全屏
+  // ESC 键Exit全屏
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isFullscreen) {
