@@ -14,7 +14,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onTogg
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <img src="/logo.svg" alt="Markdown to PDF logo" className="w-8 h-8 rounded-lg shadow-sm" />
-            <h1 className="text-xl font-semibold text-gray-800">Markdown 转 PDF</h1>
+            <h1 className="text-xl font-semibold text-gray-800">Markdown to PDF</h1>
           </div>
           
           <div className="flex items-center space-x-3">
@@ -22,17 +22,17 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onTogg
               onClick={onLoadSample}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
             >
-              加载示例
+              Load Sample
             </button>
             <button
               onClick={onToggleFullscreen}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 flex items-center space-x-2"
-              title="全屏预览（打印模式）"
+              title="Fullscreen Preview（打印模式）"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
               </svg>
-              <span>全屏预览</span>
+              <span>Fullscreen Preview</span>
             </button>
             <button
               onClick={onExportPdf}
@@ -52,7 +52,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onTogg
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <span>导出为 PDF</span>
+                  <span>Export to PDF</span>
                 </>
               )}
             </button>
