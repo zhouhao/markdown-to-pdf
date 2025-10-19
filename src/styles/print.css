@@ -1,0 +1,137 @@
+/* 打印优化样式 */
+@media print {
+  /* 隐藏所有非内容元素 */
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* 页面设置 */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
+
+  /* 基础样式 */
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    overflow: visible !important;
+  }
+
+  /* 移除所有容器的高度限制和滚动 - 关键修复 */
+  .fixed,
+  [class*="inset"],
+  [class*="overflow"] {
+    position: static !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  /* 隐藏所有滚动条 */
+  *::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  * {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  /* 防止元素被切断 */
+  .markdown-preview h1,
+  .markdown-preview h2,
+  .markdown-preview h3,
+  .markdown-preview h4,
+  .markdown-preview h5,
+  .markdown-preview h6 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .markdown-preview p,
+  .markdown-preview blockquote,
+  .markdown-preview ul,
+  .markdown-preview ol {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .markdown-preview pre,
+  .markdown-preview table,
+  .markdown-preview figure,
+  .markdown-preview img {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* 代码块优化 */
+  .markdown-preview pre {
+    max-height: none;
+    overflow: visible;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .markdown-preview pre code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* 链接优化 */
+  .markdown-preview a {
+    text-decoration: underline;
+    color: #3366CC;
+  }
+
+  /* 表格优化 */
+  .markdown-preview table {
+    page-break-inside: auto;
+  }
+
+  .markdown-preview tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* 图片优化 */
+  .markdown-preview img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 确保内容可见和完整展开 */
+  .markdown-preview {
+    max-width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white;
+    color: #333333;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* 确保所有内容容器完全展开 */
+  #preview-content,
+  .preview-content,
+  .fullscreen-preview,
+  div[class*="min-h"],
+  div[class*="h-"] {
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* 优化字体渲染 */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+}

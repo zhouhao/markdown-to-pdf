@@ -1,0 +1,203 @@
+/* Markdown Preview Styles - 作业部落风格 */
+.markdown-preview {
+  font-family: 'PingFang SC', 'Microsoft YaHei', '微软雅黑', Arial, Helvetica, sans-serif;
+  line-height: 1.6em;
+  color: #333333;
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color: #FFFFFF;
+}
+
+/* Headings */
+.markdown-preview h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 1.5em 0 1em 0;
+  color: #448AC9;
+}
+
+.markdown-preview h2 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 1.3em 0 0.8em 0;
+  color: #333333;
+}
+
+.markdown-preview h3 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 1.2em 0 0.7em 0;
+  color: #333333;
+}
+
+.markdown-preview h4 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 1.1em 0 0.6em 0;
+  color: #333333;
+}
+
+.markdown-preview h5 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 1em 0 0.5em 0;
+  color: #333333;
+}
+
+.markdown-preview h6 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 1em 0 0.5em 0;
+  color: #333333;
+}
+
+/* Paragraphs */
+.markdown-preview p {
+  margin: 0 0 1em 0;
+  font-size: 16px;
+  line-height: 1.7em;
+  color: #333333;
+}
+
+/* Links */
+.markdown-preview a {
+  color: #3366CC;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.markdown-preview a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+.markdown-preview ul,
+.markdown-preview ol {
+  margin: 0 0 1em 0;
+  padding-left: 30px;
+}
+
+.markdown-preview li {
+  margin: 0.5em 0;
+  line-height: 1.7em;
+  color: #333333;
+}
+
+.markdown-preview li > ul,
+.markdown-preview li > ol {
+  margin: 0.3em 0;
+}
+
+/* Blockquotes */
+.markdown-preview blockquote {
+  margin: 1em 0;
+  padding: 10px 15px 10px 20px;
+  border-left: 4px solid #CCCCCC;
+  background-color: #F6F6F6;
+  color: #666666;
+}
+
+.markdown-preview blockquote p {
+  margin: 0;
+  color: #666666;
+}
+
+/* Code */
+.markdown-preview code {
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 14px;
+  padding: 2px 4px;
+  background-color: #F0F0F0;
+  color: #CD4B73;
+  border-radius: 3px;
+}
+
+.markdown-preview pre {
+  margin: 0 0 1em 0;
+  padding: 15px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  overflow-x: auto;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.markdown-preview pre code {
+  font-family: Consolas, Monaco, 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 0;
+  background-color: transparent;
+  color: #333333;
+  display: block;
+}
+
+/* Tables */
+.markdown-preview table {
+  width: 100%;
+  margin: 1em 0;
+  border-collapse: collapse;
+  border: 1px solid #DDDDDD;
+}
+
+.markdown-preview thead {
+  background-color: #F0F0F0;
+}
+
+.markdown-preview tbody tr:nth-child(even) {
+  background-color: #F9F9F9;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  padding: 8px 12px;
+  border: 1px solid #DDDDDD;
+  text-align: left;
+  color: #333333;
+}
+
+.markdown-preview th {
+  font-weight: 700;
+}
+
+/* Horizontal Rule */
+.markdown-preview hr {
+  margin: 2em 0;
+  border: 0;
+  border-top: 1px solid #DDDDDD;
+}
+
+/* Images */
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+/* Strong and Emphasis */
+.markdown-preview strong {
+  font-weight: 700;
+  color: #333333;
+}
+
+.markdown-preview em {
+  font-style: italic;
+}
+
+.markdown-preview del {
+  text-decoration: line-through;
+  text-decoration-color: #666666;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: none;
+  color: #666666;
+  position: relative;
+}
