@@ -1,50 +1,73 @@
-# React + TypeScript + Vite
+# Markdown → PDF (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fast, client‑side web app that converts Markdown to a styled PDF — no server required. Paste or write Markdown, preview the result instantly, then export a PDF directly in your browser.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Live Markdown preview using markdown-it
+- Syntax highlighting with highlight.js
+- One‑click export to PDF powered by html2pdf.js (client‑only)
+- Light/Dark theme support (next-themes)
+- Accessible UI primitives (Radix UI) and Tailwind CSS styling
+- Built with React + TypeScript + Vite for rapid development
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React 18, TypeScript, Vite
+- markdown-it, highlight.js, html2pdf.js
+- Tailwind CSS, Radix UI, class-variance-authority, clsx
+- next-themes, sonner
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Node.js 18+ (recommended)
+- pnpm 9+ installed globally: `npm i -g pnpm`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Quick start
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Install dependencies: `pnpm install`
+- Start the dev server: `pnpm dev`
+- Open the app at the URL printed in the terminal (usually http://localhost:5173)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Usage
+
+- Write or paste your Markdown into the editor
+- See the formatted preview update in real time
+- Click the Export/Download PDF button in the app to generate and save a PDF
+- Optionally adjust any available options (e.g., page size) in the UI if provided
+
+## Scripts
+
+- dev: install deps (offline‑friendly) and start Vite
+- build: type‑check and build for production
+- build:prod: production build with BUILD_MODE=prod
+- preview: preview the production build locally
+- install-deps: install dependencies only
+- clean: remove node_modules, store, and lockfile, then prune store
+
+Run any script with pnpm, for example: `pnpm build`
+
+## Build and deploy
+
+- Production build: `pnpm build` (or `pnpm build:prod`)
+- Output directory: `dist/`
+- Host the contents of `dist/` on any static host (Vercel, Netlify, GitHub Pages, etc.)
+- Test the build locally: `pnpm preview`
+
+## Troubleshooting
+
+- PDF blocked by popup blockers: allow downloads/popups for the site
+- Unexpected page breaks: consider adjusting content or page settings; long code blocks may split across pages
+- Fonts/appearance differ between screen and PDF: browser print rendering can vary; prefer web‑safe fonts
+- Install issues: ensure Node 18+, run `pnpm install`; try `pnpm clean` then reinstall if needed
+
+## Acknowledgements
+
+- markdown-it — Markdown parsing
+- highlight.js — Code syntax highlighting
+- html2pdf.js — Client‑side PDF generation
+- Radix UI, Tailwind CSS — UI and styling
+
+## License
+
+TBD
