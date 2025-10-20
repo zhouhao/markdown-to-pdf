@@ -134,4 +134,33 @@
     print-color-adjust: exact;
     color-adjust: exact;
   }
+
+  /* 全屏预览打印字号缩放（让 PDF 更紧凑） */
+  .fullscreen-preview .markdown-preview {
+    font-size: 12px; /* 默认正文 */
+    line-height: 1.6;
+  }
+
+  .fullscreen-preview .markdown-preview p,
+  .fullscreen-preview .markdown-preview li {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .fullscreen-preview .markdown-preview code,
+  .fullscreen-preview .markdown-preview pre code {
+    font-size: 12px;
+  }
+
+  .fullscreen-preview .markdown-preview h1 { font-size: 24px; }
+  .fullscreen-preview .markdown-preview h2 { font-size: 20px; }
+  .fullscreen-preview .markdown-preview h3 { font-size: 18px; }
+  .fullscreen-preview .markdown-preview h4 { font-size: 16px; }
+  .fullscreen-preview .markdown-preview h5 { font-size: 14px; }
+  .fullscreen-preview .markdown-preview h6 { font-size: 13px; }
+
+  .fullscreen-preview .markdown-preview th,
+  .fullscreen-preview .markdown-preview td {
+    font-size: 12px;
+  }
 }

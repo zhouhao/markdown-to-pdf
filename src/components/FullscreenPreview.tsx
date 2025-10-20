@@ -18,7 +18,7 @@ const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, 
   }, [markdownContent]);
 
   return (
-    <div className="fixed inset-0 bg-white z-50 overflow-auto">
+    <div className="fullscreen-preview fixed inset-0 bg-white z-50 overflow-auto">
       {/* Exit按钮 - 打印时隐藏 */}
       <button
         onClick={onExit}
