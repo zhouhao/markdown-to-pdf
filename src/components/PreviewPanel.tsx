@@ -31,7 +31,7 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ markdownContent }) => {
         <div 
           id="preview-content"
           ref={previewRef} 
-          className="prose prose-sm max-w-none p-6 markdown-preview"
+          className="prose prose-sm max-w-none markdown-preview"
         />
       </div>
     </div>

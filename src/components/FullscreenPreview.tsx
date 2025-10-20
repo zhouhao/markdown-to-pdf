@@ -32,7 +32,7 @@ const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, 
       </button>
 
       {/* 预览内容 */}
-      <div className="min-h-screen py-12">
+      <div className="min-h-screen">
         <div 
           id="preview-content"
           ref={previewRef} 
