@@ -9,9 +9,25 @@ import './styles/markdown.css';
 import './styles/print.css';
 
 function App() {
-  const [markdownContent, setMarkdownContent] = useState<string>(sampleMarkdown);
+  const [markdownContent, setMarkdownContent] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem('mdtp_markdownContent');
+      return saved !== null ? saved : sampleMarkdown;
+    } catch (e) {
+      return sampleMarkdown;
+    }
+  });
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+
+  // Persist editor content to localStorage
+  useEffect(() => {
+    try {
+      localStorage.setItem('mdtp_markdownContent', markdownContent);
+    } catch (e) {
+      // ignore write errors (e.g., storage disabled)
+    }
+  }, [markdownContent]);
 
   const handleLoadSample = useCallback(() => {
     setMarkdownContent(sampleMarkdown);
