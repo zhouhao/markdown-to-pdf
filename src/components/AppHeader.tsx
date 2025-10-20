@@ -1,13 +1,22 @@
 import React from 'react';
 
+interface DocSummary { id: string; name: string }
+
 interface AppHeaderProps {
   onLoadSample: () => void;
   onExportPdf: () => void;
   onToggleFullscreen: () => void;
   isExporting: boolean;
+  // multi-doc props
+  docs: DocSummary[];
+  currentDocId: string;
+  onSwitchDoc: (id: string) => void;
+  onNewDoc: () => void;
+  onRenameDoc: () => void;
+  onDeleteDoc: () => void;
 }
 
-const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onToggleFullscreen, isExporting }) => {
+const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onToggleFullscreen, isExporting, docs, currentDocId, onSwitchDoc, onNewDoc, onRenameDoc, onDeleteDoc }) => {
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-[1920px] mx-auto px-6 py-4">
@@ -18,6 +27,23 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onTogg
           </div>
           
           <div className="flex items-center space-x-3">
+            {/* Document selector */}
+            <div className="flex items-center space-x-2">
+              <select
+                value={currentDocId}
+                onChange={(e) => onSwitchDoc(e.target.value)}
+                className="px-2 py-2 text-sm bg-white border border-gray-300 rounded-lg text-gray-700"
+                title="Switch document"
+              >
+                {docs.map(d => (
+                  <option key={d.id} value={d.id}>{d.name}</option>
+                ))}
+              </select>
+              <button onClick={onNewDoc} className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50" title="New document">New</button>
+              <button onClick={onRenameDoc} className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50" title="Rename document">Rename</button>
+              <button onClick={onDeleteDoc} className="px-3 py-2 text-sm text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50" title="Delete document">Delete</button>
+            </div>
+
             <button
               onClick={onLoadSample}
               className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200"
