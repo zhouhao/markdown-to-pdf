@@ -140,13 +140,6 @@ function App() {
     setCurrentDocId(newDoc.id);
   }, []);
 
-  const handleRenameDoc = useCallback(() => {
-    const doc = activeDoc;
-    if (!doc) return;
-    const name = (prompt('Rename document', doc.name) || '').trim();
-    if (!name) return;
-    setDocs(prev => prev.map(d => d.id === doc.id ? { ...d, name, updatedAt: Date.now() } : d));
-  }, [activeDoc]);
 
   const handleDeleteDoc = useCallback(() => {
     if (docs.length <= 1 || !activeDoc) {
@@ -181,7 +174,6 @@ function App() {
         currentDocId={activeDoc?.id || ''}
         onSwitchDoc={handleSwitchDoc}
         onNewDoc={handleNewDoc}
-        onRenameDoc={handleRenameDoc}
         onDeleteDoc={handleDeleteDoc}
       />
       

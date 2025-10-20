@@ -12,11 +12,10 @@ interface AppHeaderProps {
   currentDocId: string;
   onSwitchDoc: (id: string) => void;
   onNewDoc: () => void;
-  onRenameDoc: () => void;
   onDeleteDoc: () => void;
 }
 
-const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onToggleFullscreen, isExporting, docs, currentDocId, onSwitchDoc, onNewDoc, onRenameDoc, onDeleteDoc }) => {
+const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onToggleFullscreen, isExporting, docs, currentDocId, onSwitchDoc, onNewDoc, onDeleteDoc }) => {
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-[1920px] mx-auto px-6 py-4">
@@ -40,7 +39,6 @@ const AppHeader: React.FC<AppHeaderProps> = ({ onLoadSample, onExportPdf, onTogg
                 ))}
               </select>
               <button onClick={onNewDoc} className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50" title="New document">New</button>
-              <button onClick={onRenameDoc} className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50" title="Rename document">Rename</button>
               <button onClick={onDeleteDoc} className="px-3 py-2 text-sm text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50" title="Delete document">Delete</button>
             </div>
 
