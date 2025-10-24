@@ -201,3 +201,16 @@
   color: #666666;
   position: relative;
 }
+
+
+/* Mermaid diagrams */
+.markdown-preview .mermaid {
+  margin: 1em 0;
+  overflow: auto;
+}
+
+.markdown-preview .mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

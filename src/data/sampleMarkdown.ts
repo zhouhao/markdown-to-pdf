@@ -104,6 +104,16 @@ class UserService {
 }
 \`\`\`
 
+### 7. Mermaid diagram
+
+\`\`\`mermaid
+graph TD
+  A[Start] --> B{Is it working?}
+  B -- Yes --> C[Great]
+  B -- No --> D[Fix it]
+  D --> B
+\`\`\`
+
 ## Tips
 
 1. **Live preview**: Type in the editor on the left; the right side updates instantly.

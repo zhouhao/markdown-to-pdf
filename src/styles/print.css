@@ -164,3 +164,16 @@
     font-size: 12px;
   }
 }
+
+/* Mermaid diagrams print handling */
+@media print {
+  .markdown-preview .mermaid {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    overflow: visible !important;
+  }
+  .markdown-preview .mermaid svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}

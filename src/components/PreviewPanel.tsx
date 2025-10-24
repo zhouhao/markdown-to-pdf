@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { renderMarkdown } from '../utils/markdown';
 import 'highlight.js/styles/atom-one-dark.css';
+import mermaid from 'mermaid';
 
 interface PreviewPanelProps {
   markdownContent: string;
@@ -13,6 +14,21 @@ const PreviewPanel: React.FC<PreviewPanelProps> = ({ markdownContent }) => {
     if (previewRef.current) {
       const html = renderMarkdown(markdownContent);
       previewRef.current.innerHTML = html;
+
+      // Initialize and render Mermaid diagrams after HTML injection
+      try {
+        mermaid.initialize({ startOnLoad: false, securityLevel: 'loose' });
+        const run = (mermaid as any).run as undefined | ((opts: { querySelector: string }) => Promise<void>);
+        const containerSelector = '#preview-content .mermaid';
+        if (typeof run === 'function') {
+          run({ querySelector: containerSelector }).catch(() => {});
+        } else {
+          // v10 fallback
+          (mermaid as any).init?.(undefined, previewRef.current.querySelectorAll('.mermaid'));
+        }
+      } catch (e) {
+        console.error('Mermaid init error:', e);
+      }
     }
   }, [markdownContent]);
 
