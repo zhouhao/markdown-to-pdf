@@ -256,3 +256,36 @@
   height: auto;
   display: block;
 }
+
+
+/* Code line numbers */
+.markdown-preview pre.code-with-line-numbers {
+  position: relative;
+  padding: 15px; /* keep existing padding */
+}
+
+.markdown-preview pre.code-with-line-numbers code {
+  counter-reset: line;
+}
+
+.markdown-preview pre.code-with-line-numbers code > .code-line {
+  /*display: block;*/
+  position: relative;
+  padding-left: 3.5em; /* space for line numbers */
+}
+
+.markdown-preview pre.code-with-line-numbers code > .code-line::before {
+  position: absolute;
+  left: 0;
+  width: 3em;
+  content: counter(line);
+  counter-increment: line;
+  text-align: right;
+  color: #999;
+  padding-right: 0.5em;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}

@@ -137,11 +137,34 @@ md.renderer.rules.fence = (tokens, idx, options, env, self) => {
     const content = token.content || '';
     return `<div class="mermaid">${escapeHtml(content)}</div>`;
   }
-  // fallback to default renderer to preserve syntax highlighting
-  if (defaultFence) {
-    return defaultFence(tokens, idx, options, env, self);
+
+  // Custom renderer to add line numbers for all non-Mermaid fenced code blocks
+  const content = token.content || '';
+  const lang = (info.split(/\s+/)[0] || '').toLowerCase();
+
+  let highlighted = '';
+  try {
+    if (lang && hljs.getLanguage(lang)) {
+      highlighted = hljs.highlight(content, { language: lang }).value;
+    } else {
+      // fallback to auto-detection; if it fails, we'll escape
+      highlighted = hljs.highlightAuto(content).value;
+    }
+  } catch (_) {
+    highlighted = escapeHtml(content);
   }
-  return self.renderToken(tokens, idx, options);
+
+  // Split highlighted HTML into lines and wrap each in a span for CSS counters
+  let lines = highlighted.split(/\r?\n/);
+  if (lines.length && lines[lines.length - 1] === '') {
+    lines = lines.slice(0, -1);
+  }
+  const htmlLines = lines
+    .map(l => `<span class="code-line">${l.length ? l : '&nbsp;'}</span>`) // keep empty lines visible
+    .join('\n');
+
+  const langClass = lang ? ` language-${escapeHtml(lang)}` : '';
+  return `<pre class="code-block code-with-line-numbers"><code class="hljs${langClass}">${htmlLines}</code></pre>`;
 };
 
 export function renderMarkdown(text: string): string {
