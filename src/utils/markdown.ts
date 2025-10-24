@@ -1,4 +1,5 @@
 import MarkdownIt from 'markdown-it';
+// @ts-ignore
 import type Token from 'markdown-it/lib/token';
 import hljs from 'highlight.js';
 
