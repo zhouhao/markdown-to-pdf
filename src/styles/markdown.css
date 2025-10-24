@@ -209,6 +209,48 @@
   overflow: auto;
 }
 
+/* Callouts (GitHub-style alerts) */
+.markdown-preview .callout {
+  margin: 1em 0;
+  padding: 12px 16px;
+  border-left: 4px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  color: #333;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.markdown-preview .callout .callout-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.markdown-preview .callout .callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* Variants */
+.markdown-preview .callout.callout-info {
+  border-left-color: #2b6cb0; /* blue-700 */
+  background-color: #ebf4ff; /* blue-100 */
+}
+
+.markdown-preview .callout.callout-tip {
+  border-left-color: #2f855a; /* green-700 */
+  background-color: #f0fff4; /* green-50 */
+}
+
+.markdown-preview .callout.callout-warning {
+  border-left-color: #b7791f; /* amber-700 */
+  background-color: #fffaf0; /* orange-50 */
+}
+
+.markdown-preview .callout.callout-error {
+  border-left-color: #c53030; /* red-700 */
+  background-color: #fff5f5; /* red-50 */
+}
+
 .markdown-preview .mermaid svg {
   max-width: 100%;
   height: auto;

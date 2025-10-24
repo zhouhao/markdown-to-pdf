@@ -36,6 +36,26 @@ A fast, client‑side web app that converts Markdown to a styled PDF — no serv
 - Click the Export/Download PDF button in the app to generate and save a PDF
 - Optionally adjust any available options (e.g., page size) in the UI if provided
 
+### Markdown callouts (notes/tips/warnings/errors)
+
+This app supports GitHub-style callouts using blockquotes:
+
+```
+> [!NOTE] Optional title
+> This is an informational note.
+>
+> [!TIP]
+> Tips highlight best practices or shortcuts.
+>
+> [!WARNING] Be careful
+> Warnings draw attention to potential pitfalls.
+>
+> [!ERROR]
+> Errors indicate something went wrong.
+```
+
+Supported types: NOTE/INFO, TIP, WARNING/CAUTION, ERROR/DANGER, IMPORTANT (renders like info).
+
 ## Scripts
 
 - dev: install deps (offline‑friendly) and start Vite

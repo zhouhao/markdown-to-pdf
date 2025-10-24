@@ -114,6 +114,22 @@ graph TD
   D --> B
 \`\`\`
 
+### 8. Callouts (GitHub-style)
+
+> [!NOTE] Quick note
+> This is an informational note.
+>
+> It can span multiple paragraphs.
+>
+> [!TIP]
+> Tips highlight best practices or shortcuts.
+>
+> [!WARNING] Be careful
+> Warnings draw attention to potential pitfalls.
+>
+> [!ERROR]
+> Errors indicate something went wrong.
+
 ## Tips
 
 1. **Live preview**: Type in the editor on the left; the right side updates instantly.
