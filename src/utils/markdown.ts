@@ -44,15 +44,17 @@ md.core.ruler.after('block', 'callouts', function (state) {
     }
     if (closeIdx >= tokens.length) continue;
 
-    // Check first line inside blockquote for the [!TYPE] marker
+    // Check first paragraph inside blockquote for the [!TYPE] marker (in its first line only)
     const pOpen = tokens[i + 1];
     const inline = tokens[i + 2];
     const pClose = tokens[i + 3];
     if (!pOpen || !inline || !pClose) continue;
     if (pOpen.type !== 'paragraph_open' || inline.type !== 'inline' || pClose.type !== 'paragraph_close') continue;
 
-    const raw = (inline.content || '').trim();
-    const m = raw.match(/^\[!\s*(INFO|NOTE|TIP|WARNING|ERROR|IMPORTANT|CAUTION|DANGER)\s*\](?:\s*(.*))?$/i);
+    const rawInline = inline.content || '';
+    const lines = rawInline.split('\n');
+    const header = (lines[0] || '').trim();
+    const m = header.match(/^\[!\s*(INFO|NOTE|TIP|WARNING|ERROR|IMPORTANT|CAUTION|DANGER)\s*\](?:\s*(.*))?$/i);
     if (!m) continue;
 
     const typ = m[1].toUpperCase();
@@ -96,16 +98,26 @@ md.core.ruler.after('block', 'callouts', function (state) {
     const closeHtml = new state.Token('html_block', '', 0) as Token;
     closeHtml.content = '</div></div>';
 
-    // Remove the marker paragraph [!TYPE] ... it occupies three tokens
-    // tokens: blockquote_open, paragraph_open, inline, paragraph_close, ... , blockquote_close
-    // Replace blockquote_open with openHtml and blockquote_close with closeHtml
+    // Replace the blockquote_open with our wrapper open
     tokens.splice(i, 1, openHtml);
-    // After splice, indices shift left by 0 net since we replaced 1 with 1
-    // Remove the marker paragraph tokens which are now at i+1, i+2, i+3
-    tokens.splice(i + 1, 3);
 
-    // Find new index of the blockquote_close (it shifted by -3)
-    closeIdx = closeIdx - 3; // removed three tokens before it
+    // Remove only the first marker line from the first paragraph's inline content.
+    // If nothing remains in that paragraph after removing the marker line (and an optional empty line),
+    // drop the whole paragraph tokens; otherwise, keep the paragraph and updated inline content.
+    let bodyLines = lines.slice(1);
+    if (bodyLines.length && bodyLines[0].trim() === '') {
+      bodyLines.shift();
+    }
+    const remaining = bodyLines.join('\n');
+    if (remaining.trim().length > 0) {
+      inline.content = remaining;
+      // keep pOpen/inline/pClose tokens in place
+    } else {
+      // Remove the marker paragraph tokens which are now at i+1, i+2, i+3
+      tokens.splice(i + 1, 3);
+      // Adjust closeIdx since we removed three tokens before it
+      closeIdx = closeIdx - 3;
+    }
 
     // Replace the blockquote_close with our closing html
     tokens.splice(closeIdx, 1, closeHtml);
