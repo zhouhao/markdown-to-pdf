@@ -3,7 +3,6 @@ import AppHeader from './components/AppHeader';
 import EditorPanel from './components/EditorPanel';
 import PreviewPanel from './components/PreviewPanel';
 import FullscreenPreview from './components/FullscreenPreview';
-import { exportToPdf } from './utils/pdf';
 import { sampleMarkdown } from './data/sampleMarkdown';
 import './styles/markdown.css';
 import './styles/print.css';
@@ -88,25 +87,17 @@ function App() {
 
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+  const [autoPrint, setAutoPrint] = useState<boolean>(false);
 
   const handleLoadSample = useCallback(() => {
     setMarkdownContent(sampleMarkdown);
   }, [setMarkdownContent]);
 
-  const handleExportPdf = useCallback(async () => {
-    setIsExporting(true);
-    try {
-      const previewElement = document.getElementById('preview-content');
-      if (previewElement) {
-        await exportToPdf(previewElement, activeDoc?.name ? `${activeDoc.name}.pdf` : 'markdown-document');
-      }
-    } catch (error) {
-      console.error('导出 PDF 失败:', error);
-      alert('导出 PDF 失败，请重试。');
-    } finally {
-      setIsExporting(false);
-    }
-  }, [activeDoc?.name]);
+  const handleExportPdf = useCallback(() => {
+    // Open fullscreen preview and trigger browser print (Save as PDF)
+    setAutoPrint(true);
+    setIsFullscreen(true);
+  }, []);
 
   const handleToggleFullscreen = useCallback(() => {
     setIsFullscreen(prev => !prev);
@@ -114,6 +105,8 @@ function App() {
 
   const handleExitFullscreen = useCallback(() => {
     setIsFullscreen(false);
+    setAutoPrint(false);
+    setIsExporting(false);
   }, []);
 
   // ESC 键Exit全屏
@@ -159,6 +152,8 @@ function App() {
       <FullscreenPreview 
         markdownContent={markdownContent}
         onExit={handleExitFullscreen}
+        autoPrint={autoPrint}
+        printFileName={activeDoc?.name || 'markdown-document'}
       />
     );
   }

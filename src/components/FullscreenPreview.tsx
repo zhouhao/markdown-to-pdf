@@ -6,13 +6,20 @@ import mermaid from 'mermaid';
 interface FullscreenPreviewProps {
   markdownContent: string;
   onExit: () => void;
+  autoPrint?: boolean;
+  printFileName?: string; // used to set document.title for Save as PDF suggestion
 }
 
-const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, onExit }) => {
+const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, onExit, autoPrint = false, printFileName }) => {
   const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (previewRef.current) {
+    let isMounted = true;
+
+    async function renderAndMaybePrint() {
+      if (!previewRef.current) return;
+
+      // Render markdown
       const html = renderMarkdown(markdownContent);
       previewRef.current.innerHTML = html;
 
@@ -22,7 +29,7 @@ const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, 
         const run = (mermaid as any).run as undefined | ((opts: { querySelector: string }) => Promise<void>);
         const containerSelector = '#preview-content .mermaid';
         if (typeof run === 'function') {
-          run({ querySelector: containerSelector }).catch(() => {});
+          await run({ querySelector: containerSelector }).catch(() => {});
         } else {
           // v10 fallback
           (mermaid as any).init?.(undefined, previewRef.current.querySelectorAll('.mermaid'));
@@ -30,8 +37,46 @@ const FullscreenPreview: React.FC<FullscreenPreviewProps> = ({ markdownContent, 
       } catch (e) {
         console.error('Mermaid init error:', e);
       }
+
+      if (!autoPrint || !isMounted) return;
+
+      // Wait for fonts to be ready
+      try {
+        if (document.fonts && document.fonts.ready) {
+          await document.fonts.ready;
+        }
+      } catch {}
+
+      // Give the browser a tick to layout
+      await new Promise(r => requestAnimationFrame(() => r(undefined)));
+      await new Promise(r => setTimeout(r, 50));
+
+      const prevTitle = document.title;
+      if (printFileName && printFileName.trim()) {
+        document.title = printFileName.trim();
+      }
+
+      const handleAfterPrint = () => {
+        // Restore title
+        document.title = prevTitle;
+        // auto exit fullscreen after print (or cancel)
+        onExit();
+        window.removeEventListener('afterprint', handleAfterPrint);
+      };
+      window.addEventListener('afterprint', handleAfterPrint);
+
+      try {
+        window.print();
+      } catch (e) {
+        // If print fails, ensure cleanup
+        handleAfterPrint();
+      }
     }
-  }, [markdownContent]);
+
+    renderAndMaybePrint();
+
+    return () => { isMounted = false; };
+  }, [markdownContent, autoPrint, printFileName, onExit]);
 
   return (
     <div className="fullscreen-preview fixed inset-0 bg-white z-50 overflow-auto">
