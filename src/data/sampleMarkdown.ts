@@ -117,16 +117,15 @@ graph TD
 ### 8. Callouts (GitHub-style)
 
 > [!NOTE] Quick note
-> This is an informational note.
->
+> This is an informational note.   
 > It can span multiple paragraphs.
->
+
 > [!TIP]
 > Tips highlight best practices or shortcuts.
->
+
 > [!WARNING] Be careful
 > Warnings draw attention to potential pitfalls.
->
+
 > [!ERROR]
 > Errors indicate something went wrong.
 
